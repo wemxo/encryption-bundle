@@ -1,0 +1,42 @@
+{
+    "name": "wemxo/encryption-bundle",
+    "description": "Useful symfony bundle that offers the possibility to encrypt/decrypt sensitive data.",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "prefer-stable": true,
+    "keywords": [
+        "wemxo",
+        "encryption",
+        "bundle"
+    ],
+    "authors": [
+        {
+            "name": "Abdelhak OUADDI [zta9taw]",
+            "email": "abdelhak.freelance@gmail.com",
+            "homepage": "https://github.com/zta9taw"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.2",
+        "ext-openssl": "*",
+        "symfony/framework-bundle": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.65",
+        "symfony/phpunit-bridge": "^6.0|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wemxo\\EncryptionBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wemxo\\EncryptionBundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
