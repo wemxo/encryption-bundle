@@ -14,7 +14,7 @@ use Wemxo\EncryptionBundle\Utils\Helper\StringHelper;
 
 class EncryptionExtension extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configs = $this->processConfiguration(new Configuration(), $configs);
         $loader = new XmlFileLoader(
