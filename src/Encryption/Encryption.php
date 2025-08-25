@@ -16,18 +16,30 @@ class Encryption implements EncryptionInterface
 
     private int $iVectorLength;
 
-    public function __construct(string $encryptionKey, string $cipherAlgorithm, string $digestMethod, int $iVectorLength)
+    private bool $deterministic;
+
+    public function __construct(string $encryptionKey, string $cipherAlgorithm, string $digestMethod, int $iVectorLength, bool $deterministic = false)
     {
         $this->encryptionKey = $encryptionKey;
         $this->cipherAlgorithm = $cipherAlgorithm;
         $this->digestMethod = $digestMethod;
         $this->iVectorLength = $iVectorLength;
+        $this->deterministic = $deterministic;
     }
 
     public function encrypt(string $text): string
     {
         $hash = openssl_digest($this->encryptionKey, $this->digestMethod, true);
-        $iVector = random_bytes($this->iVectorLength);
+        if ($this->deterministic) {
+            $iVector = substr(
+                hash_hmac('sha256', $text, $this->encryptionKey, true),
+                0,
+                $this->iVectorLength
+            );
+        } else {
+            $iVector = random_bytes($this->iVectorLength);
+        }
+
         $encrypted = openssl_encrypt($text, $this->cipherAlgorithm, $hash, OPENSSL_RAW_DATA, $iVector);
         if (false === $encrypted) {
             throw new EncryptionException(openssl_error_string());

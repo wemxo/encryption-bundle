@@ -40,6 +40,7 @@ class EncryptionExtension extends Extension
                     $encryptionConfig['encryption_key'],
                     $encryptionConfig['cypher_algorithm'],
                     $encryptionConfig['digest_method'],
+                    $encryptionConfig['deterministic'],
                 ])
                 ->setPublic(false)
             ;

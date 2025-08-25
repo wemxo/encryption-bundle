@@ -30,6 +30,10 @@ class Configuration implements ConfigurationInterface
                         ->defaultValue('sha512')
                         ->info('Digest method used for encryption')
                     ->end()
+                    ->booleanNode('deterministic')
+                        ->defaultValue(false)
+                        ->info('true for deterministic encryption.')
+                    ->end()
                 ->end()
             ->end()
         ;

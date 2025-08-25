@@ -13,7 +13,7 @@ class EncryptionFactory
      *
      * @throws EncryptionException
      */
-    public static function create(string $encryptionKey, string $cipherAlgorithm, string $digestMethod): EncryptionInterface
+    public static function create(string $encryptionKey, string $cipherAlgorithm, string $digestMethod, bool $deterministic = false): EncryptionInterface
     {
         if (!in_array($cipherAlgorithm, openssl_get_cipher_methods(true))) {
             throw new EncryptionException(sprintf('Invalid CIPHER ALGORITHM given [%s]', $cipherAlgorithm));
@@ -29,7 +29,8 @@ class EncryptionFactory
             $encryptionKey,
             $cipherAlgorithm,
             $digestMethod,
-            $vectorLength
+            $vectorLength,
+            $deterministic
         );
     }
 }
